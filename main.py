@@ -16,7 +16,7 @@ st.set_page_config(
 show_output_mask = False #@param {type:"boolean"}
 checkpoint = 'dessurt_docvqa_best.pth'
 
-@st.experimental_singleton
+@st.cache
 def download_weights(url):
     if path.exists(checkpoint) == False:
         gdown.download(url, checkpoint, quiet=False)
