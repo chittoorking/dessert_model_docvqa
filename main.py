@@ -4,7 +4,11 @@ import pandas as pd
 import streamlit as st
 from run import main
 from PIL import Image
+import gdown
 
+@st.experimental_singleton
+def download_weights(url):
+    gdown.download(url, "weight_path", quiet=False)
 
 show_output_mask = False #@param {type:"boolean"}
 checkpoint = 'dessurt_docvqa_best.pth'
@@ -13,7 +17,10 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
-	
+
+url = "https://drive.google.com/file/d/1Lj6xMvQcF9dSCxVQS2nia4SiEoPXbtCv/view?usp=sharing"
+download_weights(url)
+
 st.subheader("Image")
 image_file = st.file_uploader("Upload Images", type=["png"])
 
